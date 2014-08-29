@@ -1,0 +1,63 @@
+<?php 
+	$this->headScript()->appendFile("/scripts/account.js");
+	$cust = $this->customer;
+
+	
+?>
+<div class="main_wrapper_info">
+  <h4 class="shipping-header">Customer Account</h4>
+  <div class="left-wrapper">
+  	<div class="profile-info info-box">
+  		<h4><span>Profile Information</span></h4>
+        <div class="profile-passwd-change profile-edit">
+        	<a>change password</a>
+        </div>
+  		<div class="profile-info-wrapper">
+            	<ul>
+    				<li><span class="field">Name: </span><?php echo $cust->name ?></li>  
+    				<li><span class="field">Login: </span><?php echo $this->identity->username ?></li>
+                    <li><span class="field">Password: </span>**************</li>
+                </ul>
+    			
+    	</div>
+  	</div>
+    <div class="profile-address info-box">
+        <h4><span>Your Address</span></h4>
+        <div class="profile-addr-change profile-edit">
+        	<a>edit address</a>
+        </div>
+  		<div class="profile-address-wrapper">
+            	<ul>
+                    	<li><span class="field">Company:</span><?php echo $cust->address->company ?></li>
+                        <li><span class="field">Address:</span> <?php echo $cust->address->address1 ?></li>
+                        <li><span class="field">Address2:</span> <?php echo $cust->address->address2 ?></li>
+                        <li><span class="field">City:</span>  <?php echo $cust->address->city ?></li>
+                        <li><span class="field">State:</span><?php echo $cust->address->state ?></li>
+                        <li><span class="field">Zip:</span> <?php echo $cust->address->zip ?></li>
+                        <li><span class="field">Country: </span><?php $cust->address->country ?></li>
+                        <li><span class="field">Email:</span><?php echo $cust->address->email ?></li>
+                        <li><span class="field">Phone:</span><?php echo $cust->address->phone?></li>
+                </ul>
+    			
+    	</div>
+  	</div>  
+  </div>
+  <div class="right-wrapper">
+  	<div class="order-history info-box">
+  		<h4><span>Order History</span></h4>
+  		<div class="order-history-wrapper">
+        <?php 
+			foreach($this->orders_array as $order) { ?>
+            	<ul>
+    				<li><span class="field">Order Number: </span><?php echo $order["lp"] ?></li>  
+    				<li><span class="field">Date: </span><?php echo $order["date_of_purchase"]?></li>
+                    <li><span class="field">Total: </span>$ <?php echo $order["total"]?></li>
+                    <li><a href="/account/view-order/order/<?php echo $order["lp"] ?>/user/<?php echo $this->identity->lp ?>" target="_blank">view</a></li>
+                </ul>
+		<?php	}
+		?>		
+    	</div>
+  	</div>
+  </div>
+</div>
+

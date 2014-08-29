@@ -1,0 +1,16 @@
+<?php  $this->headScript()->appendFile("/scripts/customer_login.js"); ?> 
+<div class="main_wrapper_info">
+  <h4 class="shipping-header">Enter Customer Information</h4>
+  <div class="return_cust info-box">
+    <h4><span>Login</span></h4>
+      <label>E-Mail Address: </label>
+      <input type="text" maxlength="30" size="30" id="login_email" name="login_email">
+      <label>Password: </label>
+      <input type="password" maxlength="30" size="35" id="login_pass" name="login_pass">
+      
+      <div class="checkout_button">
+        <div id="proceed_login" class="update_button proceed"><span>Login</span></div>
+      </div>
+      <a href="/account/reset-password/"><span class="linkssmall">Forgot Password?</span></a>
+  </div>
+</div>

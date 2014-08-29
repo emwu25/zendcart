@@ -1,0 +1,77 @@
+<?php  
+	$cart = $this->cart;
+?>
+
+<div class="main_wrapper">
+	
+  <div class="main-col">
+	
+	<?php echo $this->cart_content; ?>
+  
+  	<div class="special-offers">
+        <div class="special-offer-box-wrapper">
+            <div class="special-offer-box">
+                <h4>Cables and Accessories</h4>
+                <div class="so-content">
+                    <img src="http://www.123dj.com/cables/med_bss003.jpg" /><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut elit at felis elementum hendrerit. Duis imperdiet pulvinar lectus, eu feugiat sapien. Aenean suscipit lorem neque, ac porttitor urna tincidunt a. In hac habitasse platea dictumst. Proin suscipit imperdiet rhoncus. 
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="special-offer-box-wrapper">
+            <div class="special-offer-box">
+                <h4>Warehouse Resealed Section</h4>
+                <div class="so-content">
+                    <img src="http://www.123dj.com/cd/pioneer/med_cdj350resealed.jpg" /><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut elit at felis elementum hendrerit. Duis imperdiet pulvinar lectus, eu feugiat sapien. Aenean suscipit lorem neque, ac porttitor urna tincidunt a. In hac habitasse platea dictumst. Proin suscipit imperdiet rhoncus. 
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+  </div> 
+  <div class="right-col">
+  	<div class="subtotal_wrapper">
+		<h4 class="shipping-header">Estimate you shipping costs</h4>
+
+  
+  <form id="form1" name="form1" method="post" action="">
+    <label>City:</label><br>
+      <input type="text" name="city" id="city" />      
+  <br />
+    <label>State / Province:</label><br>
+      <input type="text" name="state" id="state" />      
+  <br />
+    <label>Zip / Postal Code:</label><br>
+      <input type="text" name="zip" id="zip" />      
+    <br />
+    <div id="shipping_tax_price" class="update_button"><span class="update">Calculate Price</span></div>
+    </form>
+    <h4 class="shipping-header">Use Coupon</h4>
+    <form id="form1" name="form1" method="post" action="">
+    <label>Coupon Code:</label><br>
+      <input type="text" name="coupon" id="coupon" />
+      <div class="update_button"><span class="update">Use Coupon</span></div>   
+  </form>
+  	<h4 class="shipping-header">Order Totals</h4>
+    <!--<div class="totals-div">
+    	<span id="subtotal">Subtotal: $<?php if(!$cart->subtotal) echo "0"; echo $cart->subtotal; ?></span>
+    	<span>Tax: $1024.00</span>
+    	<span>Shipping: 
+		<?php 
+		if(is_null($cart->shipping_dest)) {
+			 echo "N/A";
+		} else { echo " $" . $cart->shipping_total; }
+		
+		?></span>
+    	<span style="border-top:1px solid black; padding-top: 5px">Total: 10500.99</span>  
+    </div>-->
+    <?php echo $this->subtotals; ?>
+  </div> 
+  </div>
+</div>
+<div style="clear:both"></div>
+
+<?php //var_dump($cart) ?>
+
+
+

@@ -1,0 +1,34 @@
+<?php $cart = $this->cart; 
+
+	if($cart->hasItems()) { 
+	$subtotal = number_format($cart->subtotal);
+	
+?>
+    <div class="totals-div">
+    	<span id="subtotal">Subtotal: $<?php if(!$cart->subtotal) echo "0"; echo number_format($cart->subtotal , 2); ?></span>
+    	<span id="tax"> Tax: <?php if(is_null($cart->tax)) { echo " N/A" ; } else { echo "$" . number_format(round($cart->tax * $cart->subtotal,2), 2) ; }?></span>
+    	<span id="shipping">Shipping: 
+		<?php 
+		if(is_null($cart->shipping_dest)) {
+			 echo "N/A";
+		} else { echo " $" . number_format($cart->shipping_total,2); }
+		
+		?></span>
+    	<span style="border-top:1px solid black; padding-top: 5px">Total: $<?php echo number_format($cart->subtotal + $cart->shipping_total + round($cart->tax * $cart->subtotal,2),2); ?></span>
+        <form id="checkout" action="/checkout/user-info" method="POST">  
+        <div id="cart_checkout" class="checkout_button">
+            <div class="update_button"><span>Checkout here</span></div> 
+        </div> 
+        </form>	
+    </div>
+
+<?php  
+    
+	}	else { ?> 
+    <div class="totals-div">
+    	<span class="empty-cart">Your Cart Is Empty.</span>  
+    </div>	
+
+<?php	}
+	
+	?>

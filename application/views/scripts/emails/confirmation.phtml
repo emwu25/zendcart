@@ -1,0 +1,103 @@
+<?php 
+    $temp_order = new Application_Model_Order(); 
+	$temp_order->getOrder(50);
+?>
+
+<div style="background-color: #26BEF0; padding: 30px; font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
+  <p style= "color: #FFF;font-size: 12px;">Thank You for placing order with 123dj.com. </p>
+  <p style= "color: #FFF;font-size: 12px;">Order:</p>
+  <table width="454" border="1" cellspacing="0">
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;" width="126">Order Number</td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->id ?></td>
+    </tr>
+  </table>
+  <p style="font-size: 12px; display: block; width: 600px; color: white; ">* You can also view your order history by logging into your account from our website. </p>
+  <p style="font-size: 12px; display: block; width: 600px; color: white; "> Order details: </p>
+  <table width="400px" border="1" cellspacing="0">
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Item</td>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Quantity</td>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Price</td>
+    </tr>
+    <?php foreach($temp_order->items_collection as $item) { ?>
+    <tr>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $item->sku . " " . $item->desc; ?></td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $item->qty; ?></td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $item->price; ?></td>
+    </tr>
+    <?php } ?>
+  </table>
+  <table border="1" cellspacing="0">
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Subtotal:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;">$<?php echo $temp_order->subtotal ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Shipping:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;">$<?php echo $temp_order->shipping ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Total:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;">$<?php echo $temp_order->total ?></td>
+    </tr>
+  </table>
+  <br/><br/>
+  <table border="1" cellspacing="0">
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Name:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->name; ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Company:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->company ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Address:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->address1 ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Address2:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->address2 ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Cisty:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->city ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">State:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->state ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Zip:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->zip ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Country:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->country ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Phone:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->phone ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Email:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->customer->address->email ?></td>
+    </tr>
+    <tr>
+      <td style="color: #FFF;background-color: #0A6989;font-weight: bold;padding: 5px;">Instructions:</td>
+      <td style="color: #FFF;padding:5px;background: white;color: #0A6989;font-size: 12px;"><?php echo $temp_order->instructions ?></td>
+    </tr>
+  </table>
+<br/><br/>
+  <div style="	background: white;padding: 30px; width: 540px;">
+    <h4 style="	color: #BF0000;	font-size: 18px;background-color: #FFF;padding: 5px;">Please Note:</h4>
+    <p> <strong>Do not reply to this email.</strong></p>
+    <p> PLEASE CALL Toll Free: 1-800-856-8397 and ask for processing department if you have any additional questions. </p>
+  </div>
+  <p style="color: #FFF;font-size: 12px;">Thank You,</p>
+  <p style="color: #FFF;font-size: 12px;">123dj.com<br />
+  </p>
+</div>

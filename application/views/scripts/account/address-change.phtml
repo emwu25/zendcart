@@ -1,0 +1,15 @@
+<?php 
+	$cust = $this->customer; 
+?>
+                <div class="check-mark">Address Saved.</div>
+            	<ul>
+                    	<li><span class="field">Company:</span><?php echo $cust->address->company ?></li>
+                        <li><span class="field">Address:</span> <?php echo $cust->address->address1 ?></li>
+                        <li><span class="field">Address2:</span> <?php echo $cust->address->address2 ?></li>
+                        <li><span class="field">City:</span>  <?php echo $cust->address->city ?></li>
+                        <li><span class="field">State:</span><?php echo $cust->address->state ?></li>
+                        <li><span class="field">Zip:</span> <?php echo $cust->address->zip ?></li>
+                        <li><span class="field">Country: </span><?php $cust->address->country ?></li>
+                        <li><span class="field">Email:</span><?php echo $cust->address->email ?></li>
+                        <li><span class="field">Phone:</span><?php echo $cust->address->phone?></li>
+                </ul>

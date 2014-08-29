@@ -1,0 +1,67 @@
+<?php echo $this->doctype() ?>
+
+<?php
+$login = array("url" => "/account/login", "text" => "Login" ); 
+
+if(!is_null($this->identity)) { 
+		$login["url"] = "/account/logout";
+		$login["text"] = "Logout";
+}
+
+ ?>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <?= $this->headTitle()->setPrefix($this->website->site_name . ' Cart') ?>
+  <?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+  <?php $this->headScript()->prependFile("//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"); ?>
+  <?php echo $this->headScript()->appendFile("/scripts/cart.js"); ?>
+</head>
+<body>
+<div class="top-bar">
+	<div class="top-links">
+    	<ul class="top-links-ul">
+            <li class="top-link first"><a href="<?php echo $login["url"] ?>"><?php echo $login["text"] ?></a></li>
+           	<?php
+            if($this->hasitems) 
+				echo "<li class=\"top-link\"><a href=\"/checkout/user-info/\">Checkout</a></li>";
+			?>
+            <li class="top-link"><a href="/cart/view">Cart</a></li>
+            <?php 
+			if(!is_null($this->ref)) {
+            echo '<li class="top-link"><a href="'.$this->ref.'">Continue Shopping</a></li>';
+			} ?>
+            <?php if(!is_null($this->identity)) {?>
+            <li class="top-link"><a href="/account/view">My Account</a></li>
+            <?php }?>
+		</ul>
+    </div> 
+    <?php 
+	if(!is_null($this->identity)) { 
+    	echo '<div class="customer_welcome">';
+    	echo "Logged in as: " . $this->identity->name;
+		echo '</div>';
+	} ?>
+    
+</div>
+<div class="logo-div">
+	<h1 class="logo"><?php echo $this->website->logo ?>.<span class="logo-hilite">Com</span></h1>
+</div>
+
+<?php echo $this->layout()->content; ?> 
+
+<div class="foot_wrapper">
+	<div class="main_wrapper_info">
+	<div class="footer_info">
+    <img src="/cart_images/securegodaddy.png" alt="Godaddy Secure" /><img src="/cart_images/securemcafee.png" alt="McAfee Secure" />
+    <p><?php echo $this->website->site_name ?> is committed to protecting your personal information. We use standard encryption and password protection technologies. We also respect your privacy and will not rent or sell your personal information to anyone.</p>
+	<?php echo $this->website->footer_address ?>
+	<p>Our courteous and knowledgeable staff is here to help. Don't know what you want? No problem! We'll guide you through creating your own DJ System. Need a full audio or 			lighting installation? We have you covered! We have helped set-up complete audio and lighting systems for clubs, bars, bowling alleys and restaurants. We're experienced in it 	all - from a total audio solution, to a complete video set-up to indoor and outdoor uplighting systems, we have the knowledge and know how to get your the DJ Equipment and DJ 		Lighting that you need.</p>
+	<p><a href="<?php echo $this->website->contact_us ?>" class="linkssmall">CONTACT US</a> &bull; <a href="../contact/pricematchform.php" class="linkssmall">BEAT A PRICE</a> &bull; <a href="../contact/rentalform.php" class="linkssmall">GEAR RENTAL</a> &bull; <a href="../contact/trackingform.php" class="linkssmall">TRACK YOUR PACKAGE</a> &bull; <a href="../contact/warrantyform.php" class="linkssmall">RETURNS / WARRANTY INFO</a> &bull; <a href="../r_about.html" class="linkssmall">ABOUT US</a> &bull; <a href="../r_shipping.html" class="linkssmall">SHIPPING INFO</a> &bull; <a href="../po.html" class="linkssmall">PURCHASE ORDERS</a> &bull; <a href="../custom.html" class="linkssmall">CUSTOM INSTALLATION</a> &bull; <a href="../terms.html" class="linkssmall">TERMS</a></p>
+    <a href="https://www.facebook.com/123DJcom?ref=hl" target="_blank"><img src="/cart_images/fb.png" alt="Facebook" border="0" /></a>&nbsp;&nbsp;<a href="http://www.youtube.com/user/123DJSTORE" target="_blank"><img src="/cart_images/yt.png" alt="Youtube" border="0" /></a>&nbsp;&nbsp;<a href="https://twitter.com/123DJcom" target="_blank"><img src="/cart_images/twit.png" alt="TWitter" border="0" /></a>
+	</div>
+	</div>
+</div>
+
+</body>
+</html>

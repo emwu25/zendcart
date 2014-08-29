@@ -1,0 +1,94 @@
+<?php $order = $this->order; 
+//print_r($order);
+?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/global.css">
+</head>
+<body>
+	<div class="show-order-wrapper" >
+	<div class="show-order-number-wrapper"> 
+    	<div class="show-order-number"> 
+        	<div class="left">
+            	<span>123Dj.com</span>
+            </div>
+            <div class="right">
+            	<span>Order Number: <?php echo $order->id ?></span>
+        	</div>
+        </div>
+    </div>
+</div>
+	<div class="show-order-customer-info-wrapper">
+    	<div class="show-order-customer-info">
+        	<div class="left">
+            	<div class="column">
+           			<span>Name: <?php echo $order->customer->name ?></span>
+                    <span>Company: <?php echo $order->customer->adddress->company ?></span>
+                    <span>Address: <?php echo $order->customer->address->address1 ?></span>
+                    <span>Address2: <?php echo $order->customer->address->address2 ?></span>
+                    <span>City: <?php echo $order->customer->address->city ?></span>
+                    <span>State: <?php echo $order->customer->address->state ?></span>
+                    <span>Zip: <?php echo $order->customer->address->zip ?></span>
+                    <span>Country: <?php echo $order->customer->address->country ?></span>                    
+                    <span>Email: <?php echo $order->customer->address->email ?></span>     
+                    <span>Phone: <?php echo $order->customer->address->phone ?></span>
+            	</div>
+            </div>
+            <div class="right">
+            	
+            </div>
+        </div>
+    </div>
+    <div class="show-order-order-summary-wrapper">
+    	<div class="show-order-order-summary">
+        	
+            	<div class="order-summary">
+            			<div class="items-table"> 
+                        	<div class="head-row">
+                            	<ul>
+                                	<li class="col_1"><span>Item</span></li>
+                                    <li class="col_2"><span>Qantity</span></li>
+                                    <li class="col_3"><span>Price</span></li>
+                                </ul>
+                            </div>
+                            <?php foreach($order->items_collection as $item) { ?>
+                            <div class="item-row">
+                            	<ul>
+                                	<li class="col_1"><span><?php echo $item->sku . " " . $item->desc ?></span></li>
+                                    <li class="col_2"><span><?php echo $item->qty ?> </span></li>
+                                    <li class="col_3"><span><?php echo $item->price ?></span></li>
+                                </ul> 
+                            </div>
+                            <?php } ?>
+ 						                        
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1 first"><span>Subtotal:</span></li>
+                                    <li class="sum_col_2 first"><span>$ <?php echo $order->subtotal ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1"><span>Tax:</span></li>
+                                    <li class="sum_col_2"><span>$ <?php echo $order->tax ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1"><span>Shipping:</span></li>
+                                    <li class="sum_col_2"><span> $ <?php echo $order->shipping ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1"><span>Total:</span></li>
+                                    <li class="sum_col_2"><span>$ <?php echo $order->total ?></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            
+        </div>
+    </div>
+</body>
+</html>

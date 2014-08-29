@@ -1,0 +1,58 @@
+<?php $cart = $this->cart ?>
+
+
+<div class="box_wrapper">
+  
+   	 <div class="head_row">
+   		 <ul class="head">
+   		 <li class="col_1"><span>Product Name</span>
+   		 </li>
+	     <li class="col_2"><span>Price</span>
+  	     </li>
+         <li class="col_3"><span>Quantity</span>
+         </li>
+         </ul>
+    </div>	
+	
+	<?php 
+	if($cart->hasItems()) {
+		foreach($cart->items_collection as $key => $each_item) {
+		switch($key % 2) {
+			case 0: 
+					$class = "odd";
+					break;
+			case 1: 
+					$class = "even";
+					break;	
+		}
+			?>
+   <div class="prod_row <?php echo $class ?>">
+   		<ul class="prod_ul">
+        	<li class="col_1">
+            	<span><?php echo "<strong>". $each_item->sku . "</strong> " . $each_item->desc; ?></span>
+            </li>
+            <li class="col_2">
+            <span>$<?php echo $each_item->price; ?></span>
+            </li>
+            <li class="col_3">
+            <input name="<?php echo $each_item->hashcode; ?>" type="text" id="quantity1" value="<?php echo $each_item->qty; ?>"  size="3" maxlength="3" />
+            <div class="update_button"><span class="update">Update</span></div>
+            </li>
+            <div style="clear:both"> </div>
+        </ul>
+   </div>
+   
+<?php 
+		}    
+	}	else { ?>
+    
+     <div class="prod_row odd">
+     	<span class="cart-empty"> Your Cart Is Empty.</span>
+     </div>
+    
+     
+<?php }   ?>   
+    
+    
+    
+  </div>

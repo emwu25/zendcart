@@ -1,0 +1,20 @@
+<?php 
+	$login = array("url" => "/account/login", "text" => "Login" ); 
+	
+	if(!is_null($this->identity)) {
+		$login["url"] = "/account/logout";
+		$login["text"] = "Logout";
+	}
+	
+	if($this->referrer) {
+		
+	}
+	
+?>
+
+	<li class="top-link first"><a href="<?php echo $login["url"] ?>"><?php echo $login["text"] ?></a></li>
+    <?php 
+	if($this->hasitems) 
+		echo "<li class=\"top-link\"><a href=\"/checkout/user-info/\">Checkout</a></li>";
+	?>
+	<li class="top-link last"><a href="<?php echo $this->referrer?> ">Continue Shopping</a></li>

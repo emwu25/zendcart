@@ -1,0 +1,180 @@
+<?php $this->headScript()->appendFile("/scripts/payment_verify.js");?>
+<?php $order = $this->checkout->order?>
+<div class="main_wrapper">
+	<div class="gray-box"> 
+    	<h1>Complete Checkout</h1>
+        <form id="finish_checkout" action="/checkout/complete" method="Post">
+        <div class="box-content">
+        	<div class="left">
+           		<div class="address-wrapper">
+            	<div class="address-box info-box">
+                	<h4><span>Address</span></h4>
+                	<ul>
+                    	<li><span class="field">Name:</span> <?php echo $order->customer->name  ?></li>
+                        <li><span class="field">Company:</span> <?php echo $order->customer->address->company ?></li>
+                        <li><span class="field">Address:</span> <?php echo $order->customer->address->address1 ?></li>
+                        <li><span class="field">Address2:</span> <?php echo $order->customer->address->address2 ?></li>
+                        <li><span class="field">City:</span> <?php echo $order->customer->address->city ?></li>
+                        <li><span class="field">State:</span> <?php echo $order->customer->address->state ?></li>
+                        <li><span class="field">Zip:</span><?php echo $order->customer->address->zip ?></li>
+                        <li><span class="field">Country: </span><?php $order->customer->address->country ?></li>
+                        <li><span class="field">Email:</span><?php echo $order->customer->address->email ?></li>
+                        <li><span class="field">Phone:</span><?php echo $order->customer->address->phone?></li>
+                    </ul>
+                </div>
+            </div>
+            	<div class="credit-wrapper">
+            	<div class="payment-box info-box">
+                	<h4><span>Payment Information</span></h4>
+                    	<div class="payment-options">
+                        	<ul>
+                            	<li class="payment-option first">
+                                	<img src="/cart_images/payment_03.png" />
+                                    <input type="radio" name="payment_type" value="AMEX" />
+                                </li>
+                                <li class="payment-option">
+                                 	<img src="/cart_images/payment_05.png" />
+                                    <input type="radio" name="payment_type" value="VISA" />                               
+                                </li>
+                                <li class="payment-option">
+                                 	<img src="/cart_images/payment_07.png" />
+                                    <input type="radio" name="payment_type" value="MC" />                               
+                                </li>                                                               
+                                <li class="payment-option">
+                                 	<img src="/cart_images/payment_09.png" />
+                                    <input type="radio" name="payment_type" value="DISC" />                               
+                                </li>                                                             
+                                <li class="payment-option last">
+                                	<img src="/cart_images/payment_13.png" />
+                                    <input type="radio" name="payment_type" value="WU" />                                
+                                </li>
+                                <li class="payment-option">
+                                 	<img src="/cart_images/payment_11.png" />
+                                    <input type="radio" name="payment_type" value="PP" />
+                                </li>                                 
+                            </ul>
+                        </div>
+                        <div class="cc-info">
+                        	<ul>
+                            
+                            	<li class="name"><span>Name On The Card: </span>
+                            		<input name="name" id="name" type="text" />
+                                </li>
+                            <li class="number"><span>Card Number: </span>
+                            <input name="number" id="number" type="text" />
+                            </li>
+                            <li><span>Expiration Month: </span>
+                            <select id="month" name="month">
+                            <option value = "1">January</option>
+                            <option value = "2">February</option>
+                            <option value = "3">March</option>
+                            <option value = "4">April</option>
+                            <option value = "5">May</option>
+                            <option value = "6">June</option>
+                            <option value = "7">July</option>
+                            <option value = "8">August</option>
+                            <option value = "9">September</option>
+                            <option value = "10">October</option>
+                            <option value = "11">November</option>
+                            <option value = "12">December</option> 
+                            </select>
+                            </li>
+                            <li><span>Expiration Year: </span>
+                            <select id="year" name="year">
+                            <option value = "13">2013</option>
+                            <option value = "14">2014</option>
+                            <option value = "15">2015</option>
+                            <option value = "16">2016</option>
+                            <option value = "17">2017</option>
+                            <option value = "18">2018</option>
+                            <option value = "19">2019</option>
+                            <option value = "20">2020</option>
+                            <option value = "21">2021</option>
+                            <option value = "22">2022</option>
+                            <option value = "23">2023</option>
+                            <option value = "24">2024</option> 
+                            </select>
+                            </li>
+                            <li><span>Verification Number: </span>
+                            <input name="ccv" id="ccv" type="text" size="4" maxlength="4" />
+                        	</li>
+                           
+                            </ul>
+                        </div>
+                </div>
+            </div>
+			</div>
+            <div class="right">
+				<div class="summary-wrapper">
+            		<div class="summary-box info-box">
+                	<h4><span>Order Summary</span></h4>
+                    <div class="order-summary">
+                    	<div class="items-table"> 
+                        	<div class="head-row">
+                            	<ul>
+                                	<li class="col_1"><span>Item</span></li>
+                                    <li class="col_2"><span>Qantity</span></li>
+                                    <li class="col_3"><span>Price</span></li>
+                                </ul>
+                            </div>
+                           
+                        <?php foreach($order->items_collection as $item) { ?>
+                            <div class="item-row">
+                            	<ul>
+                                	<li class="col_1"><span><?php echo $item->sku . " " . $item->desc ?></span></li>
+                                    <li class="col_2"><span><?php echo $item->qty ?></span></li>
+                                    <li class="col_3"><span>$ <?php echo $item->price ?></span></li>
+                                </ul> 
+                            </div>
+ 						<?php } ?>
+                        
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1 first"><span>Subtotal:</span></li>
+                                    <li class="sum_col_2 first"><span>$ <?php echo $order->subtotal ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1"><span>Tax:</span></li>
+                                    <li class="sum_col_2"><span>$ <?php echo $order->tax ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1"><span>Shipping:</span></li>
+                                    <li class="sum_col_2"><span> $<?php echo $order->shipping ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="summary-row">
+                            	<ul>
+                                	<li class="sum_col_1"><span>Total:</span></li>
+                                    <li class="sum_col_2"><span>$ <?php echo $order->total ?></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            	</div>
+                <div class="special-instructions-wrapper">
+                	<div class="special-instructions-box info-box">
+                    	<h4><span>Special Instructions</span></h4>
+                        <div class="special-instructions-box-content">
+                        	<div class="si-text">
+                            <span>If you happen to have any special requests regarding this order please place them in the following box:</span>
+                            </div>
+                            <textarea name="special_instructions" id="special_instructions" class="si-box"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="complete_checkout_button">
+    				<div id="complete_checkout" class="update_button"><span>Complete Checkoutz</span></div> 
+   			    </div>
+                
+                
+            </div>
+	    </div>
+        </form>
+    </div>
+</div>
+

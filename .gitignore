@@ -1,0 +1,10 @@
+application/configs
+application/controllers/AccountController.php
+application/controllers/CheckoutController.php
+application/models/DbTable/Payments.php
+application/models/ConfirmationEmail.php
+application/models/NewPassEmail.php
+application/models/Payment.php
+application/models/RecoveryEmail.php
+.idea/
+.zfproject.xml
